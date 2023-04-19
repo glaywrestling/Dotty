@@ -8,4 +8,12 @@
     <string name="rg_blind">Dots changed for R/G blind accessibility</string>
     <string name="monochrome">Dots changed for true color blind accessibility</string>
     <string name="normal">Dots changed to default settings</string>
+
+    <string-array name="dot_text">
+        <item>R</item>
+        <item>B</item>
+        <item>G</item>
+        <item>Y</item>
+        <item>P</item>
+    </string-array>
 </resources>

@@ -25,6 +25,8 @@
         <item>#333333</item>
         <item>#666666</item>
         <item>#999999</item>
-        <item>#cccccc</item>
+        <item>#AAAAAA</item>
     </array>
+
+    <color name="white">#FFFFFF</color>
 </resources>

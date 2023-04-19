@@ -12,9 +12,10 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.AnimatorSet
 import android.animation.ValueAnimator
+import android.graphics.Typeface
 import android.view.animation.AccelerateInterpolator
 import android.view.animation.BounceInterpolator
-import kotlin.random.Random
+import androidx.core.content.ContextCompat
 
 enum class DotSelectionStatus {
     First, Additional, Last
@@ -25,6 +26,8 @@ enum class AccessibilitySelection {
 }
 
 const val DOT_RADIUS = 40f
+const val TEXT_SIZE = 50f
+const val HEIGHT_ADJUST = 20f
 
 class DotsView(context: Context, attrs: AttributeSet) :
     View(context, attrs) {
@@ -40,9 +43,12 @@ class DotsView(context: Context, attrs: AttributeSet) :
     private val normalDotColors = resources.getIntArray(R.array.dotColors)
     private val nonRGDotColors = resources.getIntArray(R.array.dotColors_RGBlind)
     private val monochromeColors = resources.getIntArray(R.array.monochrome)
+    private val dotLetters = resources.getStringArray(R.array.dot_text)
+    private val white = ContextCompat.getColor(getContext(), R.color.white)
     private var cellWidth = 0
     private var cellHeight = 0
     private val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private val textPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private val pathPaint = Paint(Paint.ANTI_ALIAS_FLAG)
     private var animatorSet = AnimatorSet()
 
@@ -69,12 +75,24 @@ class DotsView(context: Context, attrs: AttributeSet) :
         for (row in 0 until GRID_SIZE) {
             for (col in 0 until GRID_SIZE) {
                 dotsGame.getDot(row, col)?.let {
+                    var displayText = false
+                    textPaint.textAlign = Paint.Align.CENTER
+                    textPaint.textSize = TEXT_SIZE
+                    textPaint.typeface = Typeface.create(Typeface.DEFAULT, Typeface.BOLD)
+                    textPaint.color = white
                     when (accessibility){
                         AccessibilitySelection.DEFAULT -> dotPaint.color = normalDotColors[it.color]
-                        AccessibilitySelection.RG_BLIND -> dotPaint.color = nonRGDotColors[it.color]
-                        AccessibilitySelection.MONOCHROME -> dotPaint.color = monochromeColors[it.color]
+                        AccessibilitySelection.RG_BLIND -> {
+                            dotPaint.color = nonRGDotColors[it.color]
+                            displayText = true
+                        }
+                        AccessibilitySelection.MONOCHROME -> {
+                            dotPaint.color = monochromeColors[it.color]
+                            displayText = true
+                        }
                     }
                     canvas.drawCircle(it.centerX, it.centerY, it.radius, dotPaint)
+                    if (displayText) canvas.drawText(dotLetters[it.color], it.centerX, it.centerY + HEIGHT_ADJUST, textPaint)
                 }
             }
         }
