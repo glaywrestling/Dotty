@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_500">#6200EE</color>
+    <color name="purple_700">#4100E0</color>
+    <color name="purple_300">#BB86FC</color>
+
+    <array name="dotColors">
+        <item>#F44336</item>
+        <item>#2196F3</item>
+        <item>#4CAF50</item>
+        <item>#FFEB3B</item>
+        <item>#673AB7</item>
+    </array>
+
+    <array name="dotColors_RGBlind">
+        <item>#994F00</item>
+        <item>#FFC20A</item>
+        <item>#40B0A6</item>
+        <item>#D35FB7</item>
+        <item>#005AB5</item>
+    </array>
+
+    <array name="monochrome">
+        <item>#000000</item>
+        <item>#333333</item>
+        <item>#666666</item>
+        <item>#999999</item>
+        <item>#cccccc</item>
+    </array>
+</resources>

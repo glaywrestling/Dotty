@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Dotty</string>
+    <string name="new_game">New Game</string>
+    <string name="score">Score</string>
+    <string name="moves">Moves</string>
+    <string name="toggle">Toggle Color Accessibility</string>
+
+    <string name="rg_blind">Dots changed for R/G blind accessibility</string>
+    <string name="monochrome">Dots changed for true color blind accessibility</string>
+    <string name="normal">Dots changed to default settings</string>
+</resources>
