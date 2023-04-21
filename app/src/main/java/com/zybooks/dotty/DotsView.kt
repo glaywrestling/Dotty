@@ -42,9 +42,9 @@ class DotsView(context: Context, attrs: AttributeSet) :
     private var gridListener: DotsGridListener? = null
     private val normalDotColors = resources.getIntArray(R.array.dotColors)
     private val nonRGDotColors = resources.getIntArray(R.array.dotColors_RGBlind)
-    private val monochromeColors = resources.getIntArray(R.array.monochrome)
     private val dotLetters = resources.getStringArray(R.array.dot_text)
     private val white = ContextCompat.getColor(getContext(), R.color.white)
+    private val black = ContextCompat.getColor(getContext(), R.color.black)
     private var cellWidth = 0
     private var cellHeight = 0
     private val dotPaint = Paint(Paint.ANTI_ALIAS_FLAG)
@@ -87,7 +87,7 @@ class DotsView(context: Context, attrs: AttributeSet) :
                             displayText = true
                         }
                         AccessibilitySelection.MONOCHROME -> {
-                            dotPaint.color = monochromeColors[it.color]
+                            dotPaint.color = black
                             displayText = true
                         }
                     }
@@ -111,7 +111,7 @@ class DotsView(context: Context, attrs: AttributeSet) :
                 when (accessibility){
                     AccessibilitySelection.DEFAULT -> pathPaint.color = normalDotColors[dot.color]
                     AccessibilitySelection.RG_BLIND -> pathPaint.color = nonRGDotColors[dot.color]
-                    AccessibilitySelection.MONOCHROME -> pathPaint.color = monochromeColors[dot.color]
+                    AccessibilitySelection.MONOCHROME -> pathPaint.color = black
                 }
                 canvas.drawPath(dotPath, pathPaint)
             }
